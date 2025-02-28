@@ -1,0 +1,18 @@
+{
+  "batch_size": 64,
+  "train_path": "/kaggle/input/emotion-analysis/track_a/train/rus.csv",
+  "test_path": "/kaggle/input/emotion-analysis/track_a/test/rus.csv",
+  "learning_rate": 1e-5,
+  "base_model": "distilbert/distilbert-base-multilingual-cased",
+  "num_labels": 6,
+  "problem_type": "multi_label_classification",
+  "LABELS": ["Anger", "Disgust", "Fear", "Joy", "Sadness", "Surprise"],
+  "num_epoch": 100,
+  "eps": 1e-9,
+  "th": 0.43,
+  "random_state": 2009,
+  "n_splits": 30,
+  "Min_loss": 0.08,
+  "num_fold": 10
+}
+
