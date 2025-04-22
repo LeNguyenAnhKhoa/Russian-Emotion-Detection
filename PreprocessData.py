@@ -1,23 +1,18 @@
 import re
 
 def remove_colons(text):
-    # Giữ lại các emoji :о, :/, :), :(, :3, :о
     emoji_pattern = r'(:o|:/|:\)|:\(|:3|:З|:о)'
     
-    # Lưu các emoji tạm thời bằng placeholder
     temp_text = re.sub(emoji_pattern, 'EMOJI_PLACEHOLDER', text)
     
-    # Xóa tất cả dấu : còn lại
     temp_text = temp_text.replace(':', ' ')
     
-    # Khôi phục lại các emoji
     final_text = temp_text
     for emoji in re.finditer(emoji_pattern, text):
         final_text = final_text.replace('EMOJI_PLACEHOLDER', emoji.group(), 1)
         
     return final_text
 
-# Thay thế dấu '/' nhưng giữ nguyên ':/' , 'о/'
 def remove_gach(text):
     emoji_pattern = r'(o/|:/|о/)'
     temp_text = re.sub(emoji_pattern, 'EMOJI_PLACEHOLDER', text)
@@ -27,7 +22,6 @@ def remove_gach(text):
         final_text = final_text.replace('EMOJI_PLACEHOLDER', emoji.group(), 1)
     return final_text
 
-# Xóa dấu '.' nhưng giữ các trường hợp ngoại lệ ._. 
 def remove_cham(text):
     emoji_pattern = r'(._.)'
     temp_text = re.sub(emoji_pattern, 'EMOJI_PLACEHOLDER', text)
@@ -37,7 +31,6 @@ def remove_cham(text):
         final_text = final_text.replace('EMOJI_PLACEHOLDER', emoji.group(), 1)
     return final_text
 
-# bỏ dấu '>' trừ trường hợp ><
 def remove_lon(text):
     emoji_pattern = r'(><)'
     temp_text = re.sub(emoji_pattern, 'EMOJI_PLACEHOLDER', text)
@@ -47,7 +40,6 @@ def remove_lon(text):
         final_text = final_text.replace('EMOJI_PLACEHOLDER', emoji.group(), 1)
     return final_text
 
-# bỏ dấu '<' trừ trường hợp ><, <3
 def remove_nho(text):
     emoji_pattern = r'(><|<3)'
     temp_text = re.sub(emoji_pattern, 'EMOJI_PLACEHOLDER', text)
@@ -58,8 +50,7 @@ def remove_nho(text):
     return final_text
 
 def preprocess_russian_text(text):
-    '''
-    # Thay thế các từ bậy
+
     replacements = {
       r'Х\*Й': 'ХУЙ',
       r'Е\*АЛО': 'ЕБАЛО',
@@ -81,7 +72,7 @@ def preprocess_russian_text(text):
         text = re.sub(pattern, replacement, text, flags=re.IGNORECASE)
 
     text = re.sub(r'\b(шок)\b', r'\1е', text)
-    #Thay thế các kí tự đặc biệt
+
     replacements = {
         r'❗️|❗': ' ! ',
         r'#|\xa0|…|\r|@<username>|\(c\)|\(с\)|👇|w\/': ' ',
@@ -99,7 +90,6 @@ def preprocess_russian_text(text):
     for pattern, replacement in replacements.items():
         text = re.sub(pattern, replacement, text)
 
-    # Xử lý kết hợp của dấu ?, số 1 và dấu ! với khoảng cách
     text = re.sub(r'[?!1]+', lambda m: ' ?! ' if set('?!').intersection(m.group()) == {'?', '!'} else
                                       ' ! ' if '!' in m.group() else
                                       ' ? ' if '?' in m.group() else '1', text)
@@ -108,7 +98,6 @@ def preprocess_russian_text(text):
                                       ' ！ ' if '！' in m.group() else
                                       ' ？ ' if '？' in m.group() else '1', text)
 
-    # gộp các chữ liền nhau
     text = re.sub(r'([^0-9])\1+', r'\1', text)
     replacements = {
       r'руский': 'русский',
@@ -123,18 +112,17 @@ def preprocess_russian_text(text):
     for pattern, replacement in replacements.items():
         text = re.sub(pattern, replacement, text, flags=re.IGNORECASE)
 
-    # Xóa các dấu
     replacements = {
       r';|"|=|%|\+|«|»|—|\||@|©|–|“|”|‘|’|。|，|一|„|•|~|✓': ' ',
       r'\-': ' ',
       r',': '',
-      r'_(?!([\.x\*]|(?<=\.)\.)|(?<=X)x|(?<=\*)\*)': ' ', # bỏ dấu '_' trừ trường hợp ._. 
-      r'(?<!:)\)': ' ', # Xóa dấu ')' trừ trường hợp ':)'
+      r'_(?!([\.x\*]|(?<=\.)\.)|(?<=X)x|(?<=\*)\*)': ' ', 
+      r'(?<!:)\)': ' ', 
       r'(?<!:)\）': ' ',
-      r'(?<!:)\(': ' ', # Xóa dấu '(' trừ trường hợp ':('
+      r'(?<!:)\(': ' ',
       r'(?<!:)\（': ' ',
-      r'(?<!_)\*(?!_)': ' ', # Xóa dấu *
-      #r'\bа-яА-ЯёЁa-zA-Z\b': ' ' # Xóa các chữ đứng 1 mình
+      r'(?<!_)\*(?!_)': ' ', 
+      #r'\bа-яА-ЯёЁa-zA-Z\b': ' '
     }
 
     for pattern, replacement in replacements.items():
@@ -146,7 +134,6 @@ def preprocess_russian_text(text):
     text = remove_nho(text)
     text = remove_lon(text)
     
-    # tách số ra
     text = re.sub(r'(?<![\<\:])(?<=\d)(?=\D)|(?<=\D)(?=\d)(?!3)', ' ', text)
 
     text = re.sub(r':\)', ' радость ', text)
@@ -154,8 +141,7 @@ def preprocess_russian_text(text):
     text = re.sub(r':o', ' сюрприз ', text)
     text = re.sub(r'\_\.\_|\.\_\.', ' смущенный ', text)
     text = re.sub(r':/', ' расстроенный ', text)
-    # Loại bỏ khoảng trắng thừa
-    '''
+
     text = re.sub(r'\s+', ' ', text).strip()
 
     return text

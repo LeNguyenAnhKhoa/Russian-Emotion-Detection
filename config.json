@@ -1,9 +1,9 @@
 {
   "batch_size": 64,
-  "train_path": "/kaggle/input/emotion-analysis/track_a/train/rus.csv",
-  "test_path": "/kaggle/input/emotion-analysis/track_a/test/rus.csv",
+  "train_path": "./Data/train/rus.csv",
+  "test_path": "./Data/test/rus.csv",
   "learning_rate": 1e-5,
-  "base_model": "distilbert/distilbert-base-multilingual-cased",
+  "base_model": "ai-forever/ruRoberta-large",
   "num_labels": 6,
   "problem_type": "multi_label_classification",
   "LABELS": ["Anger", "Disgust", "Fear", "Joy", "Sadness", "Surprise"],
