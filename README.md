@@ -8,3 +8,42 @@ This repository provides the code for our system, which achieved 4-th place at S
 
 ## Method
 
+## How to run
+
+### Installation
+```bash
+git clone github.com/LeNguyenAnhKhoa/Russian-Emotion-Detection.git
+cd Russian-Emotion-Detection
+pip install -r requirements.txt
+```
+
+### AVeriTeC Data Preparation
+Download the dataset and place it in the `Data` directory. You can found the dataset at [github.com/emotion-analysis-project/SemEval2025-task11](https://github.com/emotion-analysis-project/SemEval2025-Task11/tree/main/task-dataset/semeval-2025-task11-dataset/track_a)
+
+### Configuration
+Change the `model` or `batch_size` or everything you want in file `config.json`. Our default config:
+```json
+"batch_size": 64,
+"train_path": "./Data/train/rus.csv",
+"test_path": "./Data/test/rus.csv",
+"learning_rate": 1e-5,
+"base_model": "ai-forever/ruRoberta-large",
+"num_labels": 6,
+"problem_type": "multi_label_classification",
+"LABELS": ["Anger", "Disgust", "Fear", "Joy", "Sadness", "Surprise"],
+"num_epoch": 100,
+"eps": 1e-9,
+"th": 0.43,
+"random_state": 2009,
+"n_splits": 30,
+"Min_loss": 0.08,
+"num_fold": 10
+```
+
+### K-Fold Cross-Validation
+Run all cells in file `kfold.ipynb`. You can analyze the error when showing `wrong_predict`.
+
+### Final training and prediction
+```python3
+python main.py
+```
