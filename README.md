@@ -7,6 +7,13 @@ This repository provides the code for our system, which achieved 4-th place at S
 - For more details about the task and dataset, please refer to [the shared task paper](https://arxiv.org/abs/2503.07269).
 
 ## Method
+<p align="center"><img src="https://github.com/user-attachments/assets/6edac8f6-033b-468b-9633-fc29ae618cec" width="900" height="400"></p>
+- The above figure illustrates our system's inference pipeline:
+
+  + Firstly, we do some data pre-processing then split the data using K-fold Cross-validation.
+  + Then, we finetuning some Bert model then compare them.
+  + Next, we show some wrong prediction instances base on validation set of K-fold and adjust the pre-processing.
+  + Lastly, we choose `ruRoberta` as the best model and run on entire training set to make prediction on test set.
 
 ## How to run
 
@@ -17,7 +24,7 @@ cd Russian-Emotion-Detection
 pip install -r requirements.txt
 ```
 
-### Data Preparation
+### AVeriTeC Data Preparation
 Download the dataset and place it in the `Data` directory. You can found the dataset at [github.com/emotion-analysis-project/SemEval2025-task11](https://github.com/emotion-analysis-project/SemEval2025-Task11/tree/main/task-dataset/semeval-2025-task11-dataset/track_a)
 
 ### Configuration
