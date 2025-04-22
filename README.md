@@ -17,7 +17,7 @@ cd Russian-Emotion-Detection
 pip install -r requirements.txt
 ```
 
-### AVeriTeC Data Preparation
+### Data Preparation
 Download the dataset and place it in the `Data` directory. You can found the dataset at [github.com/emotion-analysis-project/SemEval2025-task11](https://github.com/emotion-analysis-project/SemEval2025-Task11/tree/main/task-dataset/semeval-2025-task11-dataset/track_a)
 
 ### Configuration
