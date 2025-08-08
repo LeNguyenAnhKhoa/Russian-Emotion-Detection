@@ -2,7 +2,7 @@
 
 This repository provides the code for our system, which achieved 4-th place at SemEval-2025 Task 11 track A (Russian subtask).
 
-The system description paper is published in the Proceedings of the 19th International Workshop on Semantic Evaluation (SemEval-2025) [[paper]] (https://aclanthology.org/2025.semeval-1.272/)
+The system description paper is published in the Proceedings of the 19th International Workshop on Semantic Evaluation (SemEval-2025) [[paper]](https://aclanthology.org/2025.semeval-1.272/)
 
 ## Task: SemEval-2025 Task 11 track A
 - Given a target text snippet, predict the perceived emotion(s) of the speaker. Specifically, select whether each of the following emotions apply: joy, sadness, fear, anger, surprise, or disgust. In other words, label the text snippet with: joy (1) or no joy (0), sadness (1) or no sadness (0), anger (1) or no anger (0), surprise (1) or no surprise (0), and disgust (1) or no disgust (0).
@@ -56,4 +56,5 @@ Run all cells in file `kfold.ipynb`. You can analyze the error when showing `wro
 ```python3
 python main.py
 ```
+
 
