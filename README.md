@@ -57,6 +57,7 @@ Run all cells in file `kfold.ipynb`. You can analyze the error when showing `wro
 python main.py
 ```
 ## Citation
+```
 @inproceedings{le-thin-2025-jellyk,
     title = "{J}elly{K} at {S}em{E}val-2025 Task 11: {R}ussian Multi-label Emotion Detection with Pre-trained {BERT}-based Language Models",
     author = "Le, Khoa  and
@@ -75,4 +76,5 @@ python main.py
     ISBN = "979-8-89176-273-2",
     abstract = "This paper presents our approach for SemEval-2025 Task 11, we focus on on multi-label emotion detection in Russian text (track A). We preprocess the data by handling special characters, punctuation, and emotive expressions to improve feature-label relationships. To select the best model performance, we fine-tune various pre-trained language models specialized in Russian and evaluate them using K-FOLD Cross-Validation. Our results indicated that ruRoberta-large achieved the best Macro F1-score among tested models. Finally, our system achieved fifth place in the unofficial competition ranking."
 }
+```
 
